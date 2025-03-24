@@ -13,11 +13,14 @@ mongoose.connect(process.env.MONGO_URI, {
     useUnifiedTopology: true,
 })
 .then(() => console.log('Conectado a MongoDB'))
-.catch(err => console.log(err));
+.catch(err => console.log('Error al conectar con MongoDB:', err));
+
 
 app.get('/', (req, res) => {
-    res.send('Servidor funcionando correctamente');
+    res.json({ message: 'Servidor funcionando correctamente' });
 });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
+
+require('dotenv').config();
